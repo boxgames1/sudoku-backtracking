@@ -16,3 +16,12 @@ test('sudoku solution not null', () => {
     const solvedSudoku = solveSudoku(sudoku);
     expect(solvedSudoku).not.toBe(null);
 });
+
+test('solved sudoku rows sum 45', () => {
+    const solvedSudoku = solveSudoku(sudoku);
+    solvedSudoku.forEach( row => {
+        let sum = 0;
+        row.forEach(cell => sum+=cell);
+        expect(sum).toBe(45);
+    })
+});
