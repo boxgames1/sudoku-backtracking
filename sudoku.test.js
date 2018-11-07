@@ -39,15 +39,11 @@ test("solved sudoku rows sum 45", () => {
 test("solved sudoku 3x3 boxes sum 45", () => {
   const sudoku = unsolvedSudoku;
   if (solveSudoku(sudoku, 0, 0)) {
-    expect(getBoxSum(sudoku, 0, 0)).toBe(45);
-    expect(getBoxSum(sudoku, 3, 0)).toBe(45);
-    expect(getBoxSum(sudoku, 6, 0)).toBe(45);
-    expect(getBoxSum(sudoku, 0, 3)).toBe(45);
-    expect(getBoxSum(sudoku, 3, 3)).toBe(45);
-    expect(getBoxSum(sudoku, 6, 3)).toBe(45);
-    expect(getBoxSum(sudoku, 0, 6)).toBe(45);
-    expect(getBoxSum(sudoku, 3, 6)).toBe(45);
-    expect(getBoxSum(sudoku, 6, 6)).toBe(45);
+    for (let i = 0; i < 9; i += 3) {
+      for (let j = 0; j < 9; j += 3) {
+        expect(getBoxSum(sudoku, i, j)).toBe(45);
+      }
+    }
   }
 });
 
