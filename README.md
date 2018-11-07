@@ -5,7 +5,7 @@ Install dependencies
 yarn install
 ```
 
-Test the algorithm
+Test the algorithm - Change the unsolvedSudoku for your own and test it.
 ```
 yarn test
 ```
