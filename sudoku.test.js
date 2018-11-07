@@ -67,6 +67,22 @@ test("each solved sudoku row has all numbers from 1 to 9", () => {
   }
 });
 
+test("each solved sudoku column has all numbers from 1 to 9", () => {
+  const sudoku = unsolvedSudoku;
+  if (solveSudoku(sudoku, 0, 0)) {
+    for (let i = 0; i < 9; i++) {
+      const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+      for (let j = 0; j < 9; j++) {
+        const index = numbers.indexOf(sudoku[j][i]);
+        if (index !== -1) {
+          numbers.splice(index, 1);
+        }
+      }
+      expect(numbers.length).toBe(0);
+    }
+  }
+});
+
 function getBoxSum(grid, row, col) {
   if (row > 6 || row < 0 || col < 0 || col > 6) return 0;
   let sum = 0;
