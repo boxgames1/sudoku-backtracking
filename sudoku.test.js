@@ -79,6 +79,38 @@ test("each solved sudoku column has all numbers from 1 to 9", () => {
   }
 });
 
+test("each solved sudoku 3x3 box has all numbers from 1 to 9", () => {
+  const sudoku = unsolvedSudoku;
+  if (solveSudoku(sudoku, 0, 0)) {
+    for (let i = 0; i < 9; i += 3) {
+      for (let j = 0; j < 9; j += 3) {
+        //Expect no remaining numbers
+        expect(getBoxRemainingNumbers(sudoku, i, j)).toBe(0);
+      }
+    }
+  }
+});
+
+/**
+ *
+ * HELPERS
+ *
+ */
+
+function getBoxRemainingNumbers(grid, row, col) {
+  if (row > 6 || row < 0 || col < 0 || col > 6) return 9;
+  const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  for (let i = row; i < row + 3; i++) {
+    for (let j = col; j < col + 3; j++) {
+      const index = numbers.indexOf(grid[i][j]);
+      if (index !== -1) {
+        numbers.splice(index, 1);
+      }
+    }
+  }
+  return numbers.length;
+}
+
 function getBoxSum(grid, row, col) {
   if (row > 6 || row < 0 || col < 0 || col > 6) return 0;
   let sum = 0;
